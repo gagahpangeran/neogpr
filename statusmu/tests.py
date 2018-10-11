@@ -37,3 +37,7 @@ class StatusmuUnitTest(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertEquals(result.name, 'aku')
         self.assertEquals(result.status, 'kamu')
+
+    def test_profil_url_is_exist(self):
+        response = Client().get('/profile')
+        self.assertEqual(response.status_code, 200)
