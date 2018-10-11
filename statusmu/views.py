@@ -17,3 +17,7 @@ def index(request):
     ) else {'list': Statusmu.objects.all().order_by('-date')}
 
     return render(request, 'landing.html', data)
+
+
+def profile(request):
+    return HttpResponse(status=200)
