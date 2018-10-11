@@ -128,6 +128,6 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = 'static/'
 
-STATICFILES_DIRS = []
+STATICFILES_DIRS = ['statusmu/static']
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
