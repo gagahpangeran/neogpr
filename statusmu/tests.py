@@ -1,7 +1,9 @@
 from django.test import TestCase, Client
 from django.urls import resolve, reverse
+from .views import *
 from .models import *
 from django.utils import timezone
+from urllib.parse import urlencode
 
 
 # Create your tests here.
@@ -18,3 +20,9 @@ class StatusmuUnitTest(TestCase):
         Statusmu.objects.create(name='test', status='hehe')
         count_status = Statusmu.objects.all().count()
         self.assertEqual(count_status, 1)
+
+    def test_statusmu_can_add_status(self):
+        data = urlencode({'name': 'huhu', 'status': 'hehe'})
+        response = self.client.post(
+            '/', data, content_type="application/x-www-form-urlencoded")
+        self.assertEqual(response.status_code, 200)
