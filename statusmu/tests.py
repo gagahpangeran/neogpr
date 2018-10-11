@@ -34,5 +34,6 @@ class StatusmuUnitTest(TestCase):
         response = self.client.post(
             '/', data, content_type="application/x-www-form-urlencoded")
         result = Statusmu.objects.first()
+        self.assertEquals(response.status_code, 200)
         self.assertEquals(result.name, 'aku')
         self.assertEquals(result.status, 'kamu')
