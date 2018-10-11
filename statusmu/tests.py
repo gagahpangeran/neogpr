@@ -25,4 +25,6 @@ class StatusmuUnitTest(TestCase):
         data = urlencode({'name': 'huhu', 'status': 'hehe'})
         response = self.client.post(
             '/', data, content_type="application/x-www-form-urlencoded")
+        count_status = Statusmu.objects.all().count()
         self.assertEqual(response.status_code, 200)
+        self.assertEqual(count_status, 1)
