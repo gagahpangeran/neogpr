@@ -41,3 +41,7 @@ class StatusmuUnitTest(TestCase):
     def test_profil_url_is_exist(self):
         response = Client().get('/profile/')
         self.assertEqual(response.status_code, 200)
+
+    def test_profil_page_contains_name(self):
+        response = self.client.get('/profile/')
+        self.assertContains(response, '<h1>Gagah Pangeran Rosfatiputra</h1>')
