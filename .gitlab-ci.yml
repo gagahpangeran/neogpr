@@ -20,7 +20,7 @@ UnitTest:
     - python manage.py runserver 8000 &
   when: on_success
   script:
-    - coverage run --include='status/*' manage.py test
+    - coverage run --include='statusmu/*' manage.py test
     - coverage report -m
 
 Deployment:
