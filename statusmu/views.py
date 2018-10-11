@@ -13,4 +13,4 @@ def index(request):
         data['status'] = post_data['status']
         Statusmu(**data).save()
 
-    return render(request, 'landing.html')
+    return render(request, 'landing.html', data)

@@ -28,3 +28,11 @@ class StatusmuUnitTest(TestCase):
         count_status = Statusmu.objects.all().count()
         self.assertEqual(response.status_code, 200)
         self.assertEqual(count_status, 1)
+
+    def test_statusmu_get_right_data(self):
+        data = urlencode({'name': 'aku', 'status': 'kamu'})
+        response = self.client.post(
+            '/', data, content_type="application/x-www-form-urlencoded")
+        result = Statusmu.objects.first()
+        self.assertEquals(result.name, 'aku')
+        self.assertEquals(result.status, 'kamu')
