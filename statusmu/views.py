@@ -13,4 +13,7 @@ def index(request):
         data['status'] = post_data['status']
         Statusmu(**data).save()
 
+    data = {} if not Statusmu.objects.all(
+    ) else {'list': Statusmu.objects.all().order_by('-date')}
+
     return render(request, 'landing.html', data)
