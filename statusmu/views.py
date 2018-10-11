@@ -20,4 +20,4 @@ def index(request):
 
 
 def profile(request):
-    return HttpResponse(status=200)
+    return render(request, 'profile.html')
