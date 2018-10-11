@@ -1,2 +1,2 @@
 migrate: bash deployment.sh
-web: gunicorn gpr.wsgi --log-file -
+web: gunicorn neogpr.wsgi --log-file -
