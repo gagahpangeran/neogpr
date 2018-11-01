@@ -64,16 +64,11 @@ class StatusmuFunctionalTest(StaticLiveServerTestCase):
         self.selenium.quit()
         super().tearDownClass()
 
-    def test_statusmu_page_contain_hello(self):
-        selenium = self.selenium
-        selenium.get(self.live_server_url)
-
-        self.assertIn('Hello Apa Kabar?', selenium.page_source)
-
     def test_statusmu_add_status(self):
         selenium = self.selenium
         selenium.get(self.live_server_url)
 
+        self.assertNotIn('selenium', selenium.page_source)
         self.assertNotIn('Coba Coba', selenium.page_source)
 
         name_field = selenium.find_element_by_id('name')
@@ -84,4 +79,52 @@ class StatusmuFunctionalTest(StaticLiveServerTestCase):
         status_field.send_keys('Coba Coba')
         submit_button.click()
 
+        self.assertIn('selenium', selenium.page_source)
         self.assertIn('Coba Coba', selenium.page_source)
+
+    def test_statusmu_add_anonim_status(self):
+        selenium = self.selenium
+        selenium.get(self.live_server_url)
+
+        self.assertNotIn('Anonim', selenium.page_source)
+        self.assertNotIn('Hehe', selenium.page_source)
+
+        status_field = selenium.find_element_by_id('status')
+        submit_button = selenium.find_element_by_id('submit')
+
+        status_field.send_keys('Hehe')
+        submit_button.click()
+
+        self.assertIn('Anonim', selenium.page_source)
+        self.assertIn('Hehe', selenium.page_source)
+
+    def test_statusmu_page_contain_hello(self):
+        selenium = self.selenium
+        selenium.get(self.live_server_url)
+
+        self.assertIn('<h1>Hello Apa Kabar?</h1>', selenium.page_source)
+
+    def test_statusmu_page_contain_title(self):
+        selenium = self.selenium
+        selenium.get(self.live_server_url)
+
+        self.assertIn('<title>Gagah Pangeran Rosfatiputra</title>',
+                      selenium.page_source)
+
+    def test_page_background_color(self):
+        selenium = self.selenium
+        selenium.get(self.live_server_url)
+
+        background = selenium.find_element_by_id(
+            'container').value_of_css_property('background-color')
+
+        self.assertIn('rgba(176, 44, 40, 1)', background)
+
+    def test_form_background_color(self):
+        selenium = self.selenium
+        selenium.get(self.live_server_url)
+
+        background = selenium.find_element_by_tag_name(
+            'form').value_of_css_property('background-color')
+
+        self.assertIn('rgba(255, 255, 255, 1)', background)
