@@ -4,6 +4,8 @@ from .views import *
 from .models import *
 from django.utils import timezone
 from urllib.parse import urlencode
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from selenium import webdriver
 
 
 # Create your tests here.
@@ -45,3 +47,41 @@ class StatusmuUnitTest(TestCase):
     def test_profil_page_contains_name(self):
         response = self.client.get('/profile/')
         self.assertContains(response, '<h1>Gagah Pangeran Rosfatiputra</h1>')
+
+
+class StatusmuFunctionalTest(StaticLiveServerTestCase):
+    @classmethod
+    def setUpClass(self):
+        super().setUpClass()
+        chrome_options = webdriver.chrome.options.Options()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--no-sandbox')
+        self.selenium = webdriver.Chrome(options=chrome_options)
+        self.selenium.implicitly_wait(10)
+
+    @classmethod
+    def tearDownClass(self):
+        self.selenium.quit()
+        super().tearDownClass()
+
+    def test_statusmu_page_contain_hello(self):
+        selenium = self.selenium
+        selenium.get(self.live_server_url)
+
+        self.assertIn('Hello Apa Kabar?', selenium.page_source)
+
+    def test_statusmu_add_status(self):
+        selenium = self.selenium
+        selenium.get(self.live_server_url)
+
+        self.assertNotIn('Coba Coba', selenium.page_source)
+
+        name_field = selenium.find_element_by_id('name')
+        status_field = selenium.find_element_by_id('status')
+        submit_button = selenium.find_element_by_id('submit')
+
+        name_field.send_keys('selenium')
+        status_field.send_keys('Coba Coba')
+        submit_button.click()
+
+        self.assertIn('Coba Coba', selenium.page_source)
