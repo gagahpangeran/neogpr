@@ -6,6 +6,7 @@ from django.utils import timezone
 from urllib.parse import urlencode
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
+import time
 
 
 # Create your tests here.
@@ -68,8 +69,12 @@ class StatusmuFunctionalTest(StaticLiveServerTestCase):
         selenium = self.selenium
         selenium.get(self.live_server_url)
 
+        time.sleep(5)
+
         self.assertNotIn('selenium', selenium.page_source)
         self.assertNotIn('Coba Coba', selenium.page_source)
+
+        time.sleep(5)
 
         name_field = selenium.find_element_by_id('name')
         status_field = selenium.find_element_by_id('status')
@@ -79,6 +84,8 @@ class StatusmuFunctionalTest(StaticLiveServerTestCase):
         status_field.send_keys('Coba Coba')
         submit_button.click()
 
+        time.sleep(5)
+
         self.assertIn('selenium', selenium.page_source)
         self.assertIn('Coba Coba', selenium.page_source)
 
@@ -86,14 +93,20 @@ class StatusmuFunctionalTest(StaticLiveServerTestCase):
         selenium = self.selenium
         selenium.get(self.live_server_url)
 
+        time.sleep(5)
+
         self.assertNotIn('Anonim', selenium.page_source)
         self.assertNotIn('Hehe', selenium.page_source)
+
+        time.sleep(5)
 
         status_field = selenium.find_element_by_id('status')
         submit_button = selenium.find_element_by_id('submit')
 
         status_field.send_keys('Hehe')
         submit_button.click()
+
+        time.sleep(5)
 
         self.assertIn('Anonim', selenium.page_source)
         self.assertIn('Hehe', selenium.page_source)

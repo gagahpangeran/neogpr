@@ -19,6 +19,14 @@
 </head>
 
 <body>
+    <div class="preloader-wrap">
+        <div class="percentage" id="percent"></div>
+        <div class="loader">
+            <div class="trackbar">
+                <div class="loadbar"></div>
+            </div>
+        </div>
+    </div>
     <header>
         <nav id="nav" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">GPR</a>
@@ -39,7 +47,7 @@
                 <form class="form-inline">
                     <label class="switch">
                         <input type="checkbox" id="check-theme" onclick="getTheme()">
-                        <span class="slider round" id="slide"></span>
+                        <span class="slider round" id="slide" name="switch"></span>
                     </label>
                 </form>
             </div>
@@ -60,21 +68,7 @@
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="{% static 'js/helper.js' %}">
-        // const chk = document.getElementById("check-theme");
-        // const bg = document.getElementsByTagName("body")[0];
-
-        // if (!localStorage.getItem('theme')) localStorage.setItem('theme', 'light');
-        // chk.checked = localStorage.getItem('theme') === 'dark';
-
-        // getTheme = () => {
-        //     localStorage.setItem('theme', chk.checked ? "dark" : "light");
-        //     bg.className = localStorage.getItem('theme');
-        // }
-
-        // bg.className = localStorage.getItem('theme');
-        // $(() => { $("#accordion").accordion(); });
-    </script>
+    <script src="{% static 'js/helper.js' %}"></script>
 </body>
 
 </html>

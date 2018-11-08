@@ -225,3 +225,87 @@ input:checked + .slider:before {
 #accordion h3 {
   border: none;
 }
+
+/* Loading Page */
+
+.preloader-wrap {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #303030;
+  z-index: 99999;
+}
+
+.percentage {
+  z-index: 100;
+  border: 1px solid #ccc;
+  text-align: center;
+  color: #fff;
+  line-height: 30px;
+  font-size: 15px;
+}
+
+.loader,
+.percentage {
+  height: 30px;
+  max-width: 500px;
+  border: 2px solid #b02c28;
+  border-radius: 20px;
+  font-weight: 300;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.loader:after,
+.percentage:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.trackbar {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+  overflow: hidden;
+  position: relative;
+  opacity: 0.99;
+}
+
+.loadbar {
+  width: 0%;
+  height: 100%;
+  background: #b02c28;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: flicker 5s infinite;
+  overflow: hidden;
+}
+
+@keyframes animation {
+  10% {
+    opacity: 0.9;
+  }
+  30% {
+    opacity: 0.86;
+  }
+  60% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.75;
+  }
+}
