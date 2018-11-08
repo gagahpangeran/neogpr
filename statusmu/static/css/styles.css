@@ -205,3 +205,23 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+#accordion {
+  width: 70%;
+  margin: 20px auto;
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.light #accordion h3[aria-selected="true"] {
+  background: #303030;
+  transition: 0.2s;
+}
+
+.dark #accordion h3[aria-selected="true"] {
+  background: #b02c28;
+}
+
+#accordion h3 {
+  border: none;
+}
