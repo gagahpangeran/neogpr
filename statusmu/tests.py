@@ -127,4 +127,4 @@ class StatusmuFunctionalTest(StaticLiveServerTestCase):
         background = selenium.find_element_by_tag_name(
             'form').value_of_css_property('background-color')
 
-        self.assertIn('rgba(255, 255, 255, 1)', background)
+        self.assertIn('rgba(0, 0, 0, 0)', background)

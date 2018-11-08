@@ -18,7 +18,7 @@
 
 <body>
     <header>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <nav id="nav" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">GPR</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,6 +34,12 @@
                         <a class="nav-link" href="/profile/">Profilku</a>
                     </li>
                 </ul>
+                <form class="form-inline">
+                    <label class="switch">
+                        <input type="checkbox" id="check-theme" onclick="getTheme()">
+                        <span class="slider round" id="slide"></span>
+                    </label>
+                </form>
             </div>
         </nav>
     </header>
@@ -50,6 +56,20 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+    <script>
+        const chk = document.getElementById("check-theme");
+        const bg = document.getElementsByTagName("body")[0];
+
+        if (!localStorage.getItem('theme')) localStorage.setItem('theme', 'light');
+        chk.checked = localStorage.getItem('theme') === 'dark';
+
+        getTheme = () => {
+            localStorage.setItem('theme', chk.checked ? "dark" : "light");
+            bg.className = localStorage.getItem('theme');
+        }
+
+        bg.className = localStorage.getItem('theme');
+    </script>
 </body>
 
 </html>
