@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<div id="container">
+  <h1>Daftar Buku</h1>
+  <table id="items" class="table table-light">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Image</th>
+        <th>Info</th>
+        <th>Add To Favorite</th>
+      </tr>
+    </thead>
+  </table>
+</div>
+
+<script src="{% static 'js/books.js' %}"></script>
+
+{% endblock content %}

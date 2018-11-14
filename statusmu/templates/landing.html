@@ -3,30 +3,44 @@
 {% block content %}
 
 <div id="container">
-    <h1>Hello Apa Kabar?</h1>
-    <form action="/" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="name">Nama: </label>
-            <input type="text" class="form-control" id="name" placeholder="Kosongkan untuk anonim" name="name"
-                maxlength="30" />
-        </div>
-        <div class="form-group">
-            <label for="status">Statusmu: </label>
-            <textarea class="form-control" id="status" name="status" placeholder="Tulis statusmu di sini" required></textarea>
-        </div>
-        <button type="submit" id="submit" class="btn btn-default">Submit</button>
-    </form>
-
-    <div class="content">
-        {% for data in list %}
-        <div class="head">
-            <h3><i class="fas fa-user"></i>{{ data.name }}</h3>
-            <h4><i class="fas fa-clock"></i>{{ data.date }}</h4>
-        </div>
-        <div class="status"><i class="fas fa-comment-alt"></i>{{ data.status }}</div>
-        {% endfor %}
+  <h1>Hello Apa Kabar?</h1>
+  <form action="/" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="name">Nama: </label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="Kosongkan untuk anonim"
+        name="name"
+        maxlength="30"
+      />
     </div>
+    <div class="form-group">
+      <label for="status">Statusmu: </label>
+      <textarea
+        class="form-control"
+        id="status"
+        name="status"
+        placeholder="Tulis statusmu di sini"
+        required
+      ></textarea>
+    </div>
+    <button type="submit" id="submit" class="btn btn-default">Submit</button>
+  </form>
+
+  <div class="content">
+    {% for data in list %}
+    <div class="head">
+      <h3><i class="fas fa-user"></i>{{ data.name }}</h3>
+      <h4><i class="fas fa-clock"></i>{{ data.date }}</h4>
+    </div>
+    <div class="status">
+      <i class="fas fa-comment-alt"></i>{{ data.status }}
+    </div>
+    {% endfor %}
+  </div>
 </div>
 
 {% endblock content %}

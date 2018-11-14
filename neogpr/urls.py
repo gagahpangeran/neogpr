@@ -20,5 +20,7 @@ from statusmu import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('profile/', views.profile, name='profile')
+    path('profile/', views.profile, name='profile'),
+    path('books/', views.books, name='books'),
+    path('api/books/', views.data_book, name='data')
 ]

@@ -8,6 +8,12 @@ body {
   transition: 0.2s;
 }
 
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
 .dark #home,
 .dark #container {
   background: #303030;
