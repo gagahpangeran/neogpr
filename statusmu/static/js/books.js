@@ -2,10 +2,11 @@ $(document).ready(() => {
   $.ajax({
     url: "/api/books/",
     success: result => {
-      // const books = localStorage.getItem("books");
-      // const idItems = {};
+      const books = localStorage.getItem("books");
+      const data = JSON.parse(books);
+      const idItems = {};
       result.data.map((item, index) => {
-        // if (!books) idItems[item.id] = true;
+        if (!books) idItems[item.id] = false;
         $("#items").append(
           `<tr id=${item.id}>
             <td>${index + 1}</td>
@@ -27,17 +28,40 @@ $(document).ready(() => {
               </ul>
             </td>
             <td>
-              <i class='far fa-star' onclick='fav("${item.id}")'></i>
+              <i class='${
+                !!books && data[item.id] ? "fas" : "far"
+              } fa-star' onclick='fav("${item.id}")'></i>
             </td>
           </tr>`
         );
       });
-      // console.log(idItems);
+      if (!books) {
+        localStorage.setItem("books", JSON.stringify(idItems));
+        localStorage.setItem("stars", 0);
+      }
+      countStar();
     }
   });
 });
 
 fav = id => {
-  let huhu = document.getElementById(id);
-  let star = huhu.lastElementChild.firstElementChild;
+  const data = JSON.parse(localStorage.getItem("books"));
+  let star = $(`#${id}`)[0].lastElementChild.firstElementChild;
+  if (star.className.search("fas") === -1)
+    star.className = star.className.replace("far", "fas");
+  else star.className = star.className.replace("fas", "far");
+
+  data[id] = !data[id];
+  localStorage.setItem("books", JSON.stringify(data));
+  countStar()
+};
+
+countStar = () => {
+  const data = JSON.parse(localStorage.getItem("books"));
+  let sumStar = 0;
+  Object.values(data).forEach(value => {
+    if (value) sumStar++;
+  });
+  localStorage.setItem("stars", sumStar);
+  $('#star-count').text(sumStar);
 };
