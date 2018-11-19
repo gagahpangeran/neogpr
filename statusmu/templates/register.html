@@ -2,30 +2,44 @@
 
 {% block content %}
 
+{% load static %}
+
 <div id="container">
-  <h1>Hello Apa Kabar?</h1>
+  <h1>Registrasi</h1>
   <form>
     {% csrf_token %}
+    <div class="form-group">
+      <label for="name">Email: </label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="Masukkan email"
+        name="email"
+        maxlength="50"
+      />
+    </div>
     <div class="form-group">
       <label for="name">Nama: </label>
       <input
         type="text"
         class="form-control"
         id="name"
-        placeholder="Kosongkan untuk anonim"
+        placeholder="Masukkan nama"
         name="name"
-        maxlength="30"
+        maxlength="50"
       />
     </div>
     <div class="form-group">
-      <label for="status">Statusmu: </label>
-      <textarea
+      <label for="name">Password: </label>
+      <input
+        type="password"
         class="form-control"
-        id="status"
-        name="status"
-        placeholder="Tulis statusmu di sini"
-        required
-      ></textarea>
+        id="password"
+        placeholder="Masukkan password"
+        name="password"
+        maxlength="50"
+      />
     </div>
     <button type="submit" id="submit" class="btn btn-default">Submit</button>
   </form>
@@ -42,5 +56,7 @@
     {% endfor %}
   </div>
 </div>
+
+<script src="{% static 'js/register.js' %}"></script>
 
 {% endblock content %}
