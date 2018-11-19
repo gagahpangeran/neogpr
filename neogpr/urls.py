@@ -22,5 +22,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('profile/', views.profile, name='profile'),
     path('books/', views.books, name='books'),
-    path('api/books/', views.data_book, name='data')
+    path('api/books/', views.data_book, name='data'),
+    path('register/', views.register, name='register')
 ]

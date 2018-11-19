@@ -45,3 +45,6 @@ def data_book(request):
         items.append(data)
 
     return JsonResponse({"data": items})
+
+def register(request):
+    return render(request, 'register.html')
