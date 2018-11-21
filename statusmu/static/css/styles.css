@@ -101,6 +101,12 @@ ul {
   color: #ffffff;
 }
 
+#container form button:disabled {
+  background: #ccc;
+  color: #eee;
+  cursor: not-allowed;
+}
+
 #home {
   width: 100%;
   min-height: 100vh;
@@ -155,6 +161,10 @@ ul {
   #home h2 {
     font-size: 1.3em;
   }
+}
+
+input#email {
+  margin-bottom: 20px;
 }
 
 .switch {

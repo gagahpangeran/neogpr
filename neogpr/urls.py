@@ -23,5 +23,7 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('books/', views.books, name='books'),
     path('api/books/', views.data_book, name='data'),
-    path('register/', views.register, name='register')
+    path('register/', views.register, name='register'),
+    path('api/check-email/', views.check_email, name='check'),
+    path('api/register/', views.reg, name='reg')
 ]
