@@ -38,8 +38,9 @@ def data_book(request):
         data = {}
         data['id'] = info['id']
         data['title'] = info['volumeInfo']['title']
-        data['desc'] = info['volumeInfo']['description'][:300]
-        data['author'] = ", ".join(info['volumeInfo']['authors'])
+        data['desc'] = "" if 'description' not in info['volumeInfo'] else info['volumeInfo']['description'][:300]
+        data['author'] = "" if 'author' not in info['volumeInfo'] else ", ".join(
+            info['volumeInfo']['authors'])
         data['image'] = info['volumeInfo']['imageLinks']['thumbnail']
         data['preview'] = info['volumeInfo']['previewLink']
         items.append(data)

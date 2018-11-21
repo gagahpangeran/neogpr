@@ -7,6 +7,7 @@ from urllib.parse import urlencode
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 import time
+import requests
 
 
 # Create your tests here.
@@ -48,6 +49,38 @@ class StatusmuUnitTest(TestCase):
     def test_profil_page_contains_name(self):
         response = self.client.get('/profile/')
         self.assertContains(response, '<h1>Gagah Pangeran Rosfatiputra</h1>')
+
+    def test_books_page_is_exist(self):
+        response = Client().get('/books/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_books_page_can_get_data(self):
+        response = Client().get('/api/books/')
+        self.assertEqual(True, response is not None)
+
+    def test_register_page_is_exist(self):
+        response = Client().get('/register/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_not_exist_email(self):
+        data = {'email': 'gpr@uwu.com'}
+        response = self.client.post(
+            '/api/check-email/', json.dumps(data), content_type='application/json')
+        self.assertJSONEqual(
+            str(response.content, encoding='utf8'), {'exist': False})
+
+    def test_can_register_user(self):
+        data = {'email': 'f@sil.com', 'name': 'GPR', 'password': '4dm1n'}
+        response = self.client.post(
+            '/api/register/', json.dumps(data), content_type='application/json')
+        self.assertJSONEqual(
+            str(response.content, encoding='utf8'), {'success': True})
+        
+        data['hehe'] = 'hehe'
+        response = self.client.post(
+            '/api/register/', json.dumps(data), content_type='application/json')
+        self.assertJSONEqual(
+            str(response.content, encoding='utf8'), {'success': False})
 
 
 class StatusmuFunctionalTest(StaticLiveServerTestCase):
