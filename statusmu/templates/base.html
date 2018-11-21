@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/superagent/3.8.3/superagent.min.js"></script>
     {% endblock heading %}
 </head>
 
@@ -43,6 +47,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/profile/">Profilku</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/books/">Buku</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register/">Register</a>
                     </li>
                 </ul>
                 <form class="form-inline">

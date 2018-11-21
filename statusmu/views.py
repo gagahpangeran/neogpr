@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from .models import Statusmu
+from .models import Statusmu, User
 import requests
 import json
 
@@ -46,5 +46,28 @@ def data_book(request):
 
     return JsonResponse({"data": items})
 
+
 def register(request):
     return render(request, 'register.html')
+
+
+def check_email(request):
+    exist = False
+    if(request.body):
+        data = json.loads(request.body)
+        exist = User.objects.filter(email=data['email']).exists()
+
+    return JsonResponse({"exist": exist})
+
+
+def reg(request):
+    success = False
+    if(request.body):
+        data = json.loads(request.body)
+        try:
+            User(**data).save()
+            success = True
+        except:
+            success = False
+
+    return JsonResponse({"success": success})
