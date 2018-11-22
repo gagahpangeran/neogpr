@@ -72,3 +72,19 @@ def reg(request):
             success = False
 
     return JsonResponse({"success": success})
+
+
+def subscriber(request):
+    data = list(reversed(list(User.objects.values())))
+
+    return JsonResponse({"data": data})
+
+
+def delete_subs(request):
+    success = False
+    if(request.body):
+        data = json.loads(request.body)
+        User.objects.filter(id=data['id']).delete()
+        success = True
+
+    return JsonResponse({"success": success})

@@ -56,7 +56,7 @@ class StatusmuUnitTest(TestCase):
 
     def test_books_page_can_get_data(self):
         response = Client().get('/api/books/')
-        self.assertEqual(True, response is not None)
+        self.assertTrue(response is not None)
 
     def test_register_page_is_exist(self):
         response = Client().get('/register/')
@@ -75,12 +75,32 @@ class StatusmuUnitTest(TestCase):
             '/api/register/', json.dumps(data), content_type='application/json')
         self.assertJSONEqual(
             str(response.content, encoding='utf8'), {'success': True})
-        
+
         data['hehe'] = 'hehe'
         response = self.client.post(
             '/api/register/', json.dumps(data), content_type='application/json')
         self.assertJSONEqual(
             str(response.content, encoding='utf8'), {'success': False})
+
+    def test_can_get_subscriber_list(self):
+        response = Client().get('/api/list-subscriber/')
+        self.assertTrue(response is not None)
+
+    def test_can_delete_subscriber(self):
+        response = self.client.get('/api/delete-subscriber/')
+        self.assertJSONEqual(
+            str(response.content, encoding='utf8'), {'success': False})
+
+        data = {'email': 'gpr@gpr.com', 'name': 'GPR', 'password': '4dm1n'}
+        self.client.post(
+            '/api/register/', json.dumps(data), content_type='application/json')
+
+        data = {'id': 1}
+        response = self.client.post(
+            '/api/delete-subscriber/', json.dumps(data), content_type='application/json')
+
+        self.assertJSONEqual(
+            str(response.content, encoding='utf8'), {'success': True})
 
 
 class StatusmuFunctionalTest(StaticLiveServerTestCase):

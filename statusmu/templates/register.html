@@ -6,14 +6,16 @@
 
 <div id="container">
   <h1>Registrasi</h1>
-  <div id="form-reg"></div>
+  <div id="reg"></div>
+  <div id="subscriber"></div>
 </div>
 
 <script type="text/babel" src="{% static 'js/register.js' %}"></script>
+<script type="text/babel" src="{% static 'js/subscriber.js' %}"></script>
 <script type="text/babel">
   ReactDOM.render(
-    <FormRegister token="{{ csrf_token }}" />,
-    document.getElementById("form-reg")
+    <Register token="{{ csrf_token }}" />,
+    document.getElementById("reg")
   );
 </script>
 
