@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from .models import Statusmu, User
+from django.contrib.auth import logout
 import requests
 import json
 
@@ -88,3 +89,7 @@ def delete_subs(request):
         success = True
 
     return JsonResponse({"success": success})
+
+def log_out(request):
+    logout(request)
+    return redirect('index')

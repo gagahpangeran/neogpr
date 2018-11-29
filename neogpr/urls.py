@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from statusmu import views
 
 urlpatterns = [
@@ -28,4 +28,6 @@ urlpatterns = [
     path('api/register/', views.reg, name='reg'),
     path('api/list-subscriber/', views.subscriber, name='subscriber'),
     path('api/delete-subscriber/', views.delete_subs, name='delete'),
+    path('logout/', views.log_out, name='logout'),
+    re_path(r'^auth/', include('social_django.urls', namespace='social')),
 ]

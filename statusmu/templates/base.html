@@ -60,6 +60,18 @@
                         <input type="checkbox" id="check-theme" onclick="getTheme()">
                         <span class="slider round" id="slide" name="switch"></span>
                     </label>
+                    <label class="user-bar">
+                        {% if user.is_authenticated %}
+                            <span class="user">Selamat datang, {{ user.get_full_name }}</span>
+                            <a class="nav-link" onclick="logout()">Logout</a>
+                        {% else %}
+                            <a href="{% url 'social:begin' 'google-oauth2' %}">
+                                <img
+                                    src="https://fenton100.org/UserFiles/Servers/Server_286965/Templates/googleLogin.png"
+                                >
+                            </a>
+                        {% endif %}
+                    </label>
                 </form>
             </div>
         </nav>
@@ -80,6 +92,12 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="{% static 'js/helper.js' %}"></script>
+    <script>
+        logout = () => {
+            localStorage.removeItem("books");
+            window.location = "/logout/";
+        }
+    </script>
 </body>
 
 </html>

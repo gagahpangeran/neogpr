@@ -101,6 +101,11 @@ class StatusmuUnitTest(TestCase):
 
         self.assertJSONEqual(
             str(response.content, encoding='utf8'), {'success': True})
+    
+    def test_can_login_logout(self):
+        Client().get('/logout/')
+        response = self.client.get('/')
+        self.assertNotContains(response, 'Selamat datang')
 
 
 class StatusmuFunctionalTest(StaticLiveServerTestCase):

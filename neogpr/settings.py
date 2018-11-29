@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'statusmu',
+    'social_django'
 ]
 
 MIDDLEWARE = [
@@ -66,6 +67,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -106,6 +109,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.open_id.OpenIdAuth',
+    'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+LOGIN_URL = 'index'
+LOGIN_REDIRECT_URL = 'index'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '494061037603-j4h69ggrtkdqhnnrk684bjuieoujls9c.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'PcoIg7L8_QSl80wyC0jD-2LG'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/

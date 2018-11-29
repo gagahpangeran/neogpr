@@ -27,6 +27,32 @@ ul {
   background: #b02c28 !important;
 }
 
+.dark .user-bar .user {
+  color: #303030;
+}
+
+.user-bar {
+  margin: 0 15px;
+}
+
+.user-bar img {
+  height: 40px;
+  width: auto;
+}
+
+.user-bar .user {
+  color: #b02c28;
+  margin-right: 5px;
+  font-size: 1.5em;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.user-bar .nav-link {
+  color: #007bff!important;
+  cursor: pointer!important;
+}
+
 #container {
   width: 100%;
   min-height: 100vh;
